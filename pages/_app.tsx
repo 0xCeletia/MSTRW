@@ -13,6 +13,7 @@ import {
     useAccount,
     WagmiConfig,
 } from "wagmi";
+import { optimismGoerli } from "@wagmi/core/chains";
 import { publicProvider } from "wagmi/providers/public";
 import "styles/globals.scss";
 import { RecoilRoot } from "recoil";
@@ -36,7 +37,7 @@ import { Header } from "components";
 export const queryClient = new QueryClient();
 
 const { chains, provider, webSocketProvider } = configureChains(
-    [scroll, goerli],
+    [optimismGoerli],
     [publicProvider()]
 );
 
