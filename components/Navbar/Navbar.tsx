@@ -113,7 +113,10 @@ export const Navbar = () => {
                             md:pl-4 : soldaki boşluğu belirliyor, :pr sağı
                             md:flex i kaldırınca yazı gitti span'de ama hidden ı da kaldırınca geldi
                         */}
-                        <ConnectButton />
+                        <ConnectButton
+                            accountStatus="address"
+                            chainStatus="none"
+                        />
                         {/* get started butonunu devre dışı bıraktım */}
                         {/* <Button
                             onClick={() => ConnectButton}
