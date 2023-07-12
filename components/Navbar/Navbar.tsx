@@ -114,8 +114,9 @@ export const Navbar = () => {
                             md:flex i kaldırınca yazı gitti span'de ama hidden ı da kaldırınca geldi
                         */}
                         <ConnectButton
-                            accountStatus="address"
-                            chainStatus="none"
+                            accountStatus="avatar"
+                            chainStatus="name"
+                            showBalance={false}
                         />
                         {/* get started butonunu devre dışı bıraktım */}
                         {/* <Button
