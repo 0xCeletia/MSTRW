@@ -1,3 +1,4 @@
+import { AudioPlayer } from "decent-audio-player";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
 import { AiOutlineWallet } from "react-icons/ai";
@@ -181,7 +182,7 @@ const Home: NextPage = () => {
                         <h1 className="text-[64px] md:text-[24px] md:mt-[-16px] font-[700] ml-10 text-green-600 dark:text-white mb-0 rubik leading-[40px] md:leading-[52px] w-[100%] md:w-[85%]">
                             twenty one pilots
                         </h1>
-                        <h1 className="text-[64px] md:text-[24px] md:mt-[-16px] font-[700] ml-10 text-MAIN_DARK dark:text-white mb-0 rubik leading-[40px] md:leading-[52px] w-[100%] md:w-[85%]">
+                        <h1 className="mt-[60px] flex items-center text-[64px] md:text-[24px] md:mt-[-16px] font-[700] ml-10 text-MAIN_DARK dark:text-white mb-0 rubik leading-[40px] md:leading-[52px] w-[100%] md:w-[85%]">
                             /blurryface
                         </h1>
 
@@ -197,10 +198,16 @@ const Home: NextPage = () => {
                                 // }
                                 leftIcon={<AiOutlineWallet />}
                                 color="openblue"
-                                className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-3  mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
+                                className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
                             >
                                 mint
                             </Button>
+                            <AudioPlayer
+                                size={56}
+                                audioSrc="https://nftstorage.link/ipfs/QmWNaSdhXq2WdusiBcVC2Ju5A1JJySRDVNrQMEBGcaazvC"
+                                callbackAfterPlay={console.log}
+                                active
+                            />
                         </div>
                     </Container>
                 </Container>
