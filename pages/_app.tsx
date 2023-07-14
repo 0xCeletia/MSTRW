@@ -1,3 +1,10 @@
+import { useReducer } from "react";
+import {
+    DispatchPlayerContext,
+    PlayerContext,
+    playerInitialState,
+    playerReducer,
+} from "decent-audio-player";
 import "@rainbow-me/rainbowkit/styles.css";
 import {
     darkTheme,
@@ -54,27 +61,34 @@ const wagmiClient = createClient({
 });
 
 function masterwaveApp({ Component, pageProps }: AppProps) {
+    const [state, dispatch] = useReducer(playerReducer, playerInitialState);
     const [_theme, _setTheme] = useState<ThemeOption>("dark");
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <ClientOnly>
-                <RecoilRoot>
-                    <WagmiConfig client={wagmiClient}>
-                        <RainbowKitProvider
-                            chains={chains}
-                            theme={
-                                _theme === "dark" ? darkTheme() : lightTheme()
-                            }
-                        >
-                            <InitHooks setTheme={_setTheme} />
-                            <Component {...pageProps} />
-                            <ToastContainer draggable theme={_theme} />
-                        </RainbowKitProvider>
-                    </WagmiConfig>
-                </RecoilRoot>
-            </ClientOnly>
-        </QueryClientProvider>
+        <PlayerContext.Provider value={state}>
+            <DispatchPlayerContext.Provider value={dispatch}>
+                <QueryClientProvider client={queryClient}>
+                    <ClientOnly>
+                        <RecoilRoot>
+                            <WagmiConfig client={wagmiClient}>
+                                <RainbowKitProvider
+                                    chains={chains}
+                                    theme={
+                                        _theme === "dark"
+                                            ? darkTheme()
+                                            : lightTheme()
+                                    }
+                                >
+                                    <InitHooks setTheme={_setTheme} />
+                                    <Component {...pageProps} />
+                                    <ToastContainer draggable theme={_theme} />
+                                </RainbowKitProvider>
+                            </WagmiConfig>
+                        </RecoilRoot>
+                    </ClientOnly>
+                </QueryClientProvider>
+            </DispatchPlayerContext.Provider>
+        </PlayerContext.Provider>
     );
 }
 
