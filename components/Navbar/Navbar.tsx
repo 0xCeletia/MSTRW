@@ -115,7 +115,7 @@ export const Navbar = () => {
                         */}
                         <ConnectButton
                             accountStatus="avatar"
-                            chainStatus="name"
+                            chainStatus="icon"
                             showBalance={false}
                         />
                         {/* get started butonunu devre dışı bıraktım */}
