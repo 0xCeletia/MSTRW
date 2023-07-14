@@ -1,4 +1,3 @@
-import { AudioPlayer } from "decent-audio-player";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
 import { AiOutlineWallet } from "react-icons/ai";
@@ -78,7 +77,6 @@ const Home: NextPage = () => {
         <>
             <Header />
             <Navbar />
-
             <section className=" w-full overflow-hidden min-h-screen ">
                 {/* w-[100%] md:w-[85%] bunu silince düzeldi, soldaydı
                     md:mt-[24px] yukarıyla olan mesafe
@@ -202,12 +200,6 @@ const Home: NextPage = () => {
                             >
                                 mint
                             </Button>
-                            <AudioPlayer
-                                size={56}
-                                audioSrc="https://nftstorage.link/ipfs/QmWNaSdhXq2WdusiBcVC2Ju5A1JJySRDVNrQMEBGcaazvC"
-                                callbackAfterPlay={console.log}
-                                active
-                            />
                         </div>
                     </Container>
                 </Container>
