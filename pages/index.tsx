@@ -42,6 +42,8 @@ import { IoDiamondOutline } from "react-icons/io5";
 import contractInterface from "../contract-abi.json";
 
 const Home: NextPage = () => {
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
     const [totalMinted, setTotalMinted] = useState(0);
     const { isConnected, isDisconnected } = useAccount();
     const router = useRouter();
@@ -237,12 +239,29 @@ const Home: NextPage = () => {
                                 ease-linear iyi oluyor
                                 transition-all da olsun
                             */}
-                            {!isMinted && (
+                            {mounted && !isMinted && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
                                     color="openblue"
-                                    className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
+                                    className="button w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
+                                    disabled={isMintLoading || isMintStarted}
+                                    data-mint-loading={isMintLoading}
+                                    data-mint-started={isMintStarted}
+                                >
+                                    {isMintLoading && "Waiting for approval"}
+                                    {isMintStarted && "Minting..."}
+                                    {!isMintLoading && !isMintStarted && "Mint"}
+                                </Button>
+                            )}
+
+                            {/* butonumuzu aazcık değiştirdik */}
+                            {/* {mounted && !isMinted && (
+                                <Button
+                                    onClick={() => mint?.()}
+                                    leftIcon={<AiOutlineWallet />}
+                                    color="openblue"
+                                    className="  w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
                                     disabled={isMintLoading || isMintStarted}
                                     data-mint-loading={isMintLoading}
                                     data-mint-started={isMintStarted}
@@ -251,7 +270,7 @@ const Home: NextPage = () => {
                                     {isMintStarted && "Minting.."}
                                     {!isMintLoading && !isMintStarted && "Mint"}
                                 </Button>
-                            )}
+                            )} */}
                             {/* <Button
                                 onClick={() => mint?.()}
                                 leftIcon={<AiOutlineWallet />}
@@ -387,53 +406,6 @@ const Home: NextPage = () => {
                         </Container>
                     </div>
                 </Container>
-                {/* onun kısmı
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                -
-                 */}
-                {/* <Container className="mt-[60px] md:mt-[96px] flex flex-col items-center"> */}
-                {/* başlığı düzenlemiş ayrı ayrı spanlarla */}
-                {/* butonu güzelleştiren bu classname */}
-                {/* <Button
-                        onClick={() => router.push(Paths.CONNECT_WALLET)} heyo
-                        leftIcon={<AiOutlineWallet />}
-                        color="primary"
-                        className="mt-[24px] md:mt-[32px] h-12 pl-4 pr-4"
-                    >
-                        Get started
-                    </Button>
-                    {/* arkaplan bu */}
-                {/* <Image
-                        className="w-full "
-                        src={LandingIllustrations}
-                        alt="Illustrations"
-                    /> */}
-                {/* uçan note sayfası bu, bounce onu hoplatıyor */} */
-                {/* <Image
-                        className="w-full -translate-y-2 hidden md:flex animate-custom-bounce"
-                        src={theme === "light" ? Screens : ScreensLight}
-                        alt="Screens"
-                    /> */}
-                {/* i didnt get what it does maybe something to do with phones */}
-                {/* <Image
-                        className="w-full -translate-y-2 flex md:hidden animate-custom-bounce"
-                        src={theme === "light" ? ScreensSm : ScreensSmLight}
-                        alt="Screens"
-                    /> */}
-                {/* </Container> */}
                 <Container>
                     <h2 className="text-center mt-[40px] text-[24px] md:text-[48px] font-[600] rubik text-MAIN_DARK dark:text-white rubik">
                         About it
