@@ -239,7 +239,25 @@ const Home: NextPage = () => {
                                 ease-linear iyi oluyor
                                 transition-all da olsun
                             */}
-                            {mounted && !isMinted && (
+                            {!isConnected && (
+                                <Button
+                                    onClick={() => mint?.()}
+                                    leftIcon={<AiOutlineWallet />}
+                                    color="openblue"
+                                    className="button w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
+                                    disabled={isMintLoading || isMintStarted}
+                                    data-mint-loading={isMintLoading}
+                                    data-mint-started={isMintStarted}
+                                >
+                                    {isMintLoading && "Waiting for approval"}
+                                    {isMintStarted && "Minting..."}
+                                    {!isMintLoading && !isMintStarted && "Mint"}
+                                </Button>
+                            )}
+                            {/* {!isConnected && <ConnectButton />} */}
+
+                            {/* sen azcık dur burda */}
+                            {mounted && isConnected && !isMinted && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
