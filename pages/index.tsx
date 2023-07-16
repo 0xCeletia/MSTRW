@@ -4,6 +4,7 @@ import {
     useContractWrite,
     useContractRead,
     useContract,
+    useWaitForTransaction,
 } from "wagmi";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
@@ -42,7 +43,7 @@ import contractInterface from "../contract-abi.json";
 
 const Home: NextPage = () => {
     const [totalMinted, setTotalMinted] = useState(0);
-    const { isConnected } = useAccount();
+    const { isConnected, isDisconnected } = useAccount();
     const router = useRouter();
     const theme = useTheme();
     const imageRef = useRef<HTMLImageElement | null>(null);
@@ -55,7 +56,18 @@ const Home: NextPage = () => {
         functionName: "mint",
     });
 
-    const { write: mint, isSuccess } = useContractWrite(config);
+    const {
+        data: mintData,
+        write: mint,
+        isLoading: isMintLoading,
+        isSuccess: isMintStarted,
+    } = useContractWrite(config);
+
+    const { isSuccess: txSuccess } = useWaitForTransaction({
+        hash: mintData?.hash,
+    });
+
+    const isMinted = txSuccess;
 
     const { data: totalSupplyData } = useContractRead({
         ...config,
@@ -102,8 +114,11 @@ const Home: NextPage = () => {
             window.removeEventListener("scroll", onScroll);
         };
     }, []);
+    var base = `https://mumbai.polygonscan.com/tx/${mintData?.hash}`;
+    var baset = `https://testnets.opensea.io/assets/mumbai/${config.address}/ }`;
+    //testnets.opensea.io/assets/mumbai/0x28ce947daa9af69ae44cdf4dfff01c5f04b2ae9e/1
 
-    return (
+    https: return (
         <>
             <Header />
             <Navbar />
@@ -222,14 +237,69 @@ const Home: NextPage = () => {
                                 ease-linear iyi oluyor
                                 transition-all da olsun
                             */}
-                            <Button
+                            {isConnected && !isMinted && (
+                                <Button
+                                    onClick={() => mint?.()}
+                                    leftIcon={<AiOutlineWallet />}
+                                    color="openblue"
+                                    className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
+                                    disabled={isMintLoading || isMintStarted}
+                                    data-mint-loading={isMintLoading}
+                                    data-mint-started={isMintStarted}
+                                >
+                                    {isMintLoading && "Waiting for approval"}
+                                    {isMintStarted && "Minting.."}
+                                    {!isMintLoading && !isMintStarted && "Mint"}
+                                </Button>
+                            )}
+                            {/* <Button
                                 onClick={() => mint?.()}
                                 leftIcon={<AiOutlineWallet />}
                                 color="openblue"
                                 className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
                             >
                                 mint
-                            </Button>
+                            </Button> */}
+                            {isMinted && (
+                                <section
+                                    className="w-full -translate-x--8
+                                hover:rounded-xl rounded-xl hover:bg-blue-300  
+                                 bg-gradient-to-tr from-rose-100 to-sky-100
+                                linear-gradient(-370deg, #3898FF, #7A70FF) transition-all
+                                 duration-300 ease-linear
+                                -translate-y-3 h-36 pl-4 pr-4
+                                text-[18px]"
+                                >
+                                    <h1 className=" text-2xl text-center tracking-wide mb-2 text-MAIN_DARK font-[600]">
+                                        NFT Minted!
+                                    </h1>
+                                    <h1 className=" text-lg leading-relaxed text-rose-900 text-center rubik mb-3 font-[600] ">
+                                        Your NFT will show up in your wallet in
+                                        the next few minutes.
+                                    </h1>
+
+                                    <p className="text-l text-center text-base font-[500]">
+                                        View on{""}
+                                        <a
+                                            href={`https://mumbai.polygonscan.com/tx/${mintData?.hash}`}
+                                        >
+                                            {" "}
+                                            <span className="underline">
+                                                Polygonscan
+                                            </span>
+                                        </a>
+                                        &nbsp; &nbsp; &nbsp; &nbsp; View on{""}
+                                        <a
+                                            href={`https://testnets.opensea.io/assets/mumbai/${config.address}/1`}
+                                        >
+                                            {" "}
+                                            <span className="underline">
+                                                Opensea
+                                            </span>
+                                        </a>
+                                    </p>
+                                </section>
+                            )}
                         </div>
                     </Container>
                 </Container>
@@ -291,7 +361,7 @@ const Home: NextPage = () => {
                                         />
                                     </div>
                                     <p className="text-base font-mono font-semibold -translate-x-16 text-MAIN_DARK text-center text-[22px] max-w-[800px] md:leading-[40px] rubik">
-                                        200 total
+                                        100 total
                                     </p>
 
                                     <p className="text-base font-regular -translate-x-16 text-slate-400 text-center text-[16px] md:text-[20px] max-w-[800px]  rubik">
