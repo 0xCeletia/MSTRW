@@ -1,3 +1,10 @@
+import {
+    useAccount,
+    usePrepareContractWrite,
+    useContractWrite,
+    useContractRead,
+    useContract,
+} from "wagmi";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
 import { AiOutlineWallet } from "react-icons/ai";
@@ -14,7 +21,7 @@ import { useTheme } from "recoil/theme/ThemeStoreHooks";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 import Flying from "assets/flying.png";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import LogoSm from "assets/logo/logo-small.png";
 import { SiDocsdotrs } from "react-icons/si";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
@@ -31,13 +38,36 @@ import {
 } from "react-icons/tb";
 import { RiWallet3Line, RiToolsLine } from "react-icons/ri";
 import { IoDiamondOutline } from "react-icons/io5";
+import contractInterface from "../contract-abi.json";
 
 const Home: NextPage = () => {
+    const [totalMinted, setTotalMinted] = useState(0);
+    const { isConnected } = useAccount();
     const router = useRouter();
     const theme = useTheme();
     const imageRef = useRef<HTMLImageElement | null>(null);
     const initialPos = useRef<number>(0);
     const offsetTop = useRef<number>(0);
+
+    const { config } = usePrepareContractWrite({
+        address: "0x28Ce947DaA9Af69aE44CDf4dfFF01c5F04B2ae9E",
+        abi: contractInterface,
+        functionName: "mint",
+    });
+
+    const { write: mint, isSuccess } = useContractWrite(config);
+
+    const { data: totalSupplyData } = useContractRead({
+        ...config,
+        functionName: "totalSupply",
+        watch: true,
+    });
+
+    useEffect(() => {
+        if (totalSupplyData) {
+            setTotalMinted(Number(totalSupplyData));
+        }
+    }, [totalSupplyData]);
 
     useEffect(() => {
         if (imageRef.current == null) return;
@@ -158,7 +188,9 @@ const Home: NextPage = () => {
                             <h4 className=" -translate-y-5 ml-5 md:text-[16px] mt-[20px] font-[500] md:mt-[24px] max-w-[800px] md:leading-[40px] rubik text-emerald-700 dark:text-white">
                                 active listing |
                             </h4>
-                            <p className="text-[28px]">100 of 10 minted</p>
+                            <p className="text-[28px]">
+                                100 of {totalMinted} minted
+                            </p>
 
                             <h4 className=" -translate-y-5 mr-5 font-[500] text-right text-[16px] md:text-[16px] mt-[20px] md:mt-[24px] text-emerald-700 max-w-[800px] md:leading-[40px] rubik dark:text-white">
                                 | minting phase
@@ -191,9 +223,7 @@ const Home: NextPage = () => {
                                 transition-all da olsun
                             */}
                             <Button
-                                // onClick={() =>
-                                //     router.push(Paths.CONNECT_WALLET)
-                                // }
+                                onClick={() => mint?.()}
                                 leftIcon={<AiOutlineWallet />}
                                 color="openblue"
                                 className="w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
