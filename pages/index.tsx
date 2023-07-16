@@ -237,7 +237,7 @@ const Home: NextPage = () => {
                                 ease-linear iyi oluyor
                                 transition-all da olsun
                             */}
-                            {isConnected && !isMinted && (
+                            {!isMinted && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
