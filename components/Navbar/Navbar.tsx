@@ -1,3 +1,5 @@
+import { ConnectWallet } from "@thirdweb-dev/react";
+
 import Logo from "assets/logo/logo-l-m.png";
 import LogoWhite from "assets/logo/logo-large-white.png";
 import { Container } from "components";
@@ -15,7 +17,6 @@ import {
     BsCode,
     BsFillMenuAppFill,
 } from "react-icons/bs";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 {
     /* olum sadece @rainbow-me/rainbowkit/package.json'daki export kısmı import ediliyormuş */
 }
@@ -113,11 +114,22 @@ export const Navbar = () => {
                             md:pl-4 : soldaki boşluğu belirliyor, :pr sağı
                             md:flex i kaldırınca yazı gitti span'de ama hidden ı da kaldırınca geldi
                         */}
-                        <ConnectButton
+                        <section className="h-12 flex md:w-max ">
+                            <ConnectWallet
+                                theme="dark"
+                                className=""
+                                style={{
+                                    backgroundColor: "#262626",
+                                    color: "white",
+                                }}
+                            />
+                        </section>
+
+                        {/* <ConnectButton
                             accountStatus="avatar"
                             chainStatus="icon"
                             showBalance={false}
-                        />
+                        /> */}
                         {/* get started butonunu devre dışı bıraktım */}
                         {/* <Button
                             onClick={() => ConnectButton}
