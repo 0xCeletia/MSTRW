@@ -25,7 +25,7 @@ import Flying from "assets/flying.png";
 import { useEffect, useRef, useState } from "react";
 import LogoSm from "assets/logo/logo-small.png";
 import { SiDocsdotrs } from "react-icons/si";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { BsUnlock, BsUiChecks } from "react-icons/bs";
 
 import { SlCreditCard } from "react-icons/sl";
@@ -239,7 +239,8 @@ const Home: NextPage = () => {
                                 ease-linear iyi oluyor
                                 transition-all da olsun
                             */}
-                            {!isConnected && (
+                            {/* <ConnectButton></ConnectButton>
+                            {isConnected && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
@@ -254,10 +255,10 @@ const Home: NextPage = () => {
                                     {!isMintLoading && !isMintStarted && "Mint"}
                                 </Button>
                             )}
-                            {/* {!isConnected && <ConnectButton />} */}
+                            {!isConnected && <ConnectButton />} */}
 
                             {/* sen azcık dur burda */}
-                            {mounted && isConnected && !isMinted && (
+                            {/* {mounted && isConnected && !isMinted && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
@@ -271,10 +272,9 @@ const Home: NextPage = () => {
                                     {isMintStarted && "Minting..."}
                                     {!isMintLoading && !isMintStarted && "Mint"}
                                 </Button>
-                            )}
-
+                            )} */}
                             {/* butonumuzu aazcık değiştirdik */}
-                            {/* {mounted && !isMinted && (
+                            {mounted && !isMinted && (
                                 <Button
                                     onClick={() => mint?.()}
                                     leftIcon={<AiOutlineWallet />}
@@ -288,7 +288,7 @@ const Home: NextPage = () => {
                                     {isMintStarted && "Minting.."}
                                     {!isMintLoading && !isMintStarted && "Mint"}
                                 </Button>
-                            )} */}
+                            )}
                             {/* <Button
                                 onClick={() => mint?.()}
                                 leftIcon={<AiOutlineWallet />}
