@@ -27,7 +27,7 @@ module.exports = {
                 buttonBlueeBgHover: "#1e3a8a",
                 buttonBlueeColor: "#FFFFFF",
                 buttonBlueeColorHover: "#FFFFFF",
-
+                mycol: "#2563eb",
                 buttonopenblueBg: "#2563eb",
                 buttonopenblueBgHover: "#1e3a8a",
                 buttonopenblueColor: "#FFFFFF",
