@@ -1,21 +1,18 @@
-import { useReducer } from "react";
-import "@rainbow-me/rainbowkit/styles.css";
 import {
-    darkTheme,
-    getDefaultWallets,
-    lightTheme,
-    RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
+    ThirdwebProvider,
+    metamaskWallet,
+    coinbaseWallet,
+    walletConnect,
+    paperWallet,
+    magicLink,
+    safeWallet,
+} from "@thirdweb-dev/react";
+
 import type { AppProps } from "next/app";
-import {
-    configureChains,
-    createClient,
-    goerli,
-    useAccount,
-    WagmiConfig,
-} from "wagmi";
-import { optimismGoerli } from "@wagmi/core/chains";
+import { configureChains, useAccount, WagmiConfig } from "wagmi";
+import { createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import { optimismGoerli, polygonMumbai } from "@wagmi/core/chains";
 import "styles/globals.scss";
 import { RecoilRoot } from "recoil";
 import {
@@ -34,22 +31,25 @@ import { Paths } from "consts/paths";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Header } from "components";
+import { InjectedConnector } from "wagmi/connectors/injected";
+import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 
 export const queryClient = new QueryClient();
 
 const { chains, provider, webSocketProvider } = configureChains(
-    [optimismGoerli],
+    [optimismGoerli, polygonMumbai],
     [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
     appName: "masterwave",
     chains,
+    projectId: "1",
 });
 
 const wagmiClient = createClient({
-    autoConnect: true,
     connectors,
+    autoConnect: true,
     provider,
     webSocketProvider,
 });
@@ -62,16 +62,25 @@ function masterwaveApp({ Component, pageProps }: AppProps) {
             <ClientOnly>
                 <RecoilRoot>
                     <WagmiConfig client={wagmiClient}>
-                        <RainbowKitProvider
-                            chains={chains}
-                            theme={
-                                _theme === "dark" ? darkTheme() : lightTheme()
-                            }
+                        <ThirdwebProvider
+                            activeChain={"mumbai"}
+                            supportedWallets={[
+                                metamaskWallet(),
+                                coinbaseWallet(),
+                                safeWallet(),
+                                paperWallet({
+                                    clientId:
+                                        "a1302610-0bce-4301-9b4c-851d779cfe10",
+                                }),
+                                magicLink({
+                                    apiKey: "pk_live_E7F10A72861EC99E",
+                                }),
+                            ]}
                         >
                             <InitHooks setTheme={_setTheme} />
                             <Component {...pageProps} />
                             <ToastContainer draggable theme={_theme} />
-                        </RainbowKitProvider>
+                        </ThirdwebProvider>
                     </WagmiConfig>
                 </RecoilRoot>
             </ClientOnly>
