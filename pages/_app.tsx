@@ -68,10 +68,6 @@ function masterwaveApp({ Component, pageProps }: AppProps) {
                                 metamaskWallet(),
                                 coinbaseWallet(),
                                 safeWallet(),
-                                paperWallet({
-                                    clientId:
-                                        "a1302610-0bce-4301-9b4c-851d779cfe10",
-                                }),
                                 magicLink({
                                     apiKey: "pk_live_E7F10A72861EC99E",
                                 }),
