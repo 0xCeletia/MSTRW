@@ -327,7 +327,7 @@ const Home: NextPage = () => {
                                         </a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; View on{""}
                                         <a
-                                            href={`https://testnets.opensea.io/assets/mumbai/${config.address}/1`}
+                                            href={`https://testnets.opensea.io/assets/goerli/${config.address}/1`}
                                         >
                                             {" "}
                                             <span className="underline">
