@@ -6,16 +6,12 @@ import {
     lightTheme,
     RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
+
 import type { AppProps } from "next/app";
-import {
-    configureChains,
-    createClient,
-    goerli,
-    useAccount,
-    WagmiConfig,
-} from "wagmi";
-import { optimismGoerli } from "@wagmi/core/chains";
+import { configureChains, WagmiConfig } from "wagmi";
+import { createClient } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
+import { goerli, optimismGoerli, polygonMumbai } from "@wagmi/core/chains";
 import "styles/globals.scss";
 import { RecoilRoot } from "recoil";
 import {
@@ -38,7 +34,7 @@ import { Header } from "components";
 export const queryClient = new QueryClient();
 
 const { chains, provider, webSocketProvider } = configureChains(
-    [optimismGoerli],
+    [optimismGoerli, polygonMumbai, goerli],
     [publicProvider()]
 );
 
@@ -63,7 +59,9 @@ function masterwaveApp({ Component, pageProps }: AppProps) {
                 <RecoilRoot>
                     <WagmiConfig client={wagmiClient}>
                         <RainbowKitProvider
+                            showRecentTransactions
                             chains={chains}
+                            initialChain={80001}
                             theme={
                                 _theme === "dark" ? darkTheme() : lightTheme()
                             }
