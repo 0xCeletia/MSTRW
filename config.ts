@@ -1,4 +1,4 @@
 export const CONFIG = {
-  APP: "masterwave",
-  APP_DESCRIPTION: "music nft market",
+  APP: "Masterwave",
+  APP_DESCRIPTION: "",
 };
