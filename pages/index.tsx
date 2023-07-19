@@ -53,7 +53,7 @@ const Home: NextPage = () => {
     const offsetTop = useRef<number>(0);
 
     const { config } = usePrepareContractWrite({
-        address: "0x28Ce947DaA9Af69aE44CDf4dfFF01c5F04B2ae9E",
+        address: "0x3985203e846455Dd60f65cD60864F4bE6A3A7DF7",
         abi: contractInterface,
         functionName: "mint",
     });
@@ -116,7 +116,7 @@ const Home: NextPage = () => {
             window.removeEventListener("scroll", onScroll);
         };
     }, []);
-    var base = `https://mumbai.polygonscan.com/tx/${mintData?.hash}`;
+    var base = `https://goerli.etherscan.io/tx/${mintData?.hash}`;
     var baset = `https://testnets.opensea.io/assets/mumbai/${config.address}/ }`;
     //testnets.opensea.io/assets/mumbai/0x28ce947daa9af69ae44cdf4dfff01c5f04b2ae9e/1
 
@@ -318,11 +318,11 @@ const Home: NextPage = () => {
                                     <p className="text-l text-center text-base font-[500]">
                                         View on{""}
                                         <a
-                                            href={`https://mumbai.polygonscan.com/tx/${mintData?.hash}`}
+                                            href={`https://goerli.etherscan.io/tx/${mintData?.hash}`}
                                         >
                                             {" "}
                                             <span className="underline">
-                                                Polygonscan
+                                                Etherscan
                                             </span>
                                         </a>
                                         &nbsp; &nbsp; &nbsp; &nbsp; View on{""}
