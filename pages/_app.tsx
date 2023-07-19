@@ -39,7 +39,7 @@ const { chains, provider, webSocketProvider } = configureChains(
 );
 
 const { connectors } = getDefaultWallets({
-    appName: "masterwave",
+    appName: "Masterwave",
     chains,
 });
 
@@ -61,7 +61,7 @@ function masterwaveApp({ Component, pageProps }: AppProps) {
                         <RainbowKitProvider
                             showRecentTransactions
                             chains={chains}
-                            initialChain={80001}
+                            initialChain={5}
                             theme={
                                 _theme === "dark" ? darkTheme() : lightTheme()
                             }
