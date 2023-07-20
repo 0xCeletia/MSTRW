@@ -3,9 +3,10 @@ import {
     usePrepareContractWrite,
     useContractWrite,
     useContractRead,
-    useContract,
     useWaitForTransaction,
 } from "wagmi";
+
+import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
 import { AiOutlineWallet } from "react-icons/ai";
@@ -52,6 +53,11 @@ const Home: NextPage = () => {
     const initialPos = useRef<number>(0);
     const offsetTop = useRef<number>(0);
 
+    // const config = prepareWriteContract({
+    //     address: "0x3985203e846455Dd60f65cD60864F4bE6A3A7DF7",
+    //     abi: contractInterface,
+    //     functionName: "mint",
+    // });
     const { config } = usePrepareContractWrite({
         address: "0x3985203e846455Dd60f65cD60864F4bE6A3A7DF7",
         abi: contractInterface,
