@@ -52,10 +52,10 @@ export const Navbar = () => {
                     */}
                     <div className="w-[150px] flex items-center">
                         <Image
-                            // onClick={() => router.push("/")}
+                            onClick={() => router.push("/")}
                             alt="Logo"
                             src={Logo}
-                            className="w-full shrink-0"
+                            className="w-full shrink-0 cursor-pointer "
                         />
                     </div>
 
@@ -80,7 +80,6 @@ export const Navbar = () => {
                         >
                             drops
                         </Button>
-
                         <Button
                             className="w-[88px] text-[14px] hover:rounded-xl"
                             // leftIcon={<BsFillMenuAppFill />}
@@ -89,13 +88,13 @@ export const Navbar = () => {
                         >
                             feeds
                         </Button>
-
                         <Button
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsColumnsGap />}
-                            // onClick={toggleTheme}
+                            onClick={() => router.push(Paths.PROFILE)}
                             color="openblue"
                         />
+                        profile
                         <Button
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsCode />}
