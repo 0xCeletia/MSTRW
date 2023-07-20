@@ -7,9 +7,13 @@ type Props = {
 };
 
 export const Header = ({ title, description }: Props) => {
+    // let _title = CONFIG.APP;
+    // if (title != null) {
+    //     _title += ` - ${title}`;
+    // }
     let _title = CONFIG.APP;
     if (title != null) {
-        _title += ` - ${title}`;
+        _title = ` ${title} - Masterwave`;
     }
 
     return (
