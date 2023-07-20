@@ -1,6 +1,6 @@
 export enum Paths {
   LANDING = "/",
-  CONNECT_WALLET = "/connect",
+  PROFILE = "/profile",
   DASHBOARD = "/dashboard",
   SHARED = "/shared",
 }
