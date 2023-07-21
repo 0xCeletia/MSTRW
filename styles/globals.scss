@@ -19,7 +19,7 @@ body {
     // font-family: 'Inter', sans-serif;
     background: black;
     color: var(--white);
-    display: flex;
+    // display: flex;
     margin: 0;
   }
 
@@ -29,7 +29,8 @@ body {
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(97, 29, 29, 0.7);
+    // background: rgba(0, 0, 0, 0.926);
+    background: #1e293b;
     z-index: 10;
 }
 
