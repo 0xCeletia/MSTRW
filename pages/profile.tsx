@@ -39,7 +39,7 @@ const style = {
 };
 
 const Profile: NextPage = () => {
-    // const { isConnected, isReconnecting, isConnecting, address } = useAccount();
+    const { isConnected, isReconnecting, isConnecting } = useAccount();
     // const router = useRouter();
     // const token = useToken();
 
@@ -50,26 +50,53 @@ const Profile: NextPage = () => {
     //     }
     // }, [isConnected, router, isReconnecting, isConnecting]);
 
+    const router = useRouter();
+
     const account = getAccount();
 
     const address = account.address;
 
     return (
         <>
-            <div className="overlay">
-                <Header title={`Music Catalog`} />
-                <Navbar />
-                <Container className="basis-1/2 bg-slate-300">
-                    <Container className="mt-20">
-                        <h1 className={style.title}>
-                            {/* with this address && check i managed to ensure that the 
-                        AddressComponent is only rendered when address is defined */}
-                            {address && <AddressComponent address={address} />}
-                        </h1>
-                        <hr></hr>
+            {!isConnected && (
+                <div className="overlay body">
+                    <Header title={`Music Catalog`} />
+                    <Navbar />
+                    <Container className="">
+                        <Container className="mt-10">
+                            <h1 className="text-4xl mt-52 font-bold mb-4 text-center">
+                                Connect to your wallet to get started!
+                            </h1>
+
+                            <p
+                                className="text-center mt-8 underline text-lg cursor-pointer"
+                                onClick={() => router.push(Paths.LANDING)}
+                            >
+                                go to home page
+                            </p>
+                        </Container>
                     </Container>
-                </Container>
-            </div>
+                </div>
+            )}
+
+            {isConnected && (
+                <div className="overlay">
+                    <Header title={`Music Catalog`} />
+                    <Navbar />
+                    <Container className="basis-1/2 bg-slate-300">
+                        <Container className="mt-20">
+                            <h1 className={style.title}>
+                                {/* with this address && check i managed to ensure that the 
+                        AddressComponent is only rendered when address is defined */}
+                                {address && (
+                                    <AddressComponent address={address} />
+                                )}
+                            </h1>
+                            <hr></hr>
+                        </Container>
+                    </Container>
+                </div>
+            )}
         </>
     );
 };
