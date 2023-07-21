@@ -11,6 +11,8 @@ import {
     AlertTitle,
     AlertDescription,
 } from "@chakra-ui/alert";
+import { CgProfile } from "react-icons/cg";
+import { getAccount } from "@wagmi/core";
 
 const style = {
     bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
@@ -47,15 +49,23 @@ const Profile: NextPage = () => {
     //     }
     // }, [isConnected, router, isReconnecting, isConnecting]);
 
+    const account = getAccount();
+
+    const address = account.address;
+
     return (
         <>
-            <Header />
-            <Navbar />
-            <Container className="">
-                <h1 className={style.title}>heyhey</h1>
-
-                <hr></hr>
-            </Container>
+            <div className="overlay">
+                <Header title={`Music Catalog`} />
+                <Navbar />
+                <Container className="basis-1/2 bg-slate-300">
+                    <Container className="mt-20">
+                        <h1 className={style.title}>heyhey</h1>
+                        <hr></hr>
+                        <h1>{`${address}`}</h1>
+                    </Container>
+                </Container>
+            </div>
         </>
     );
 };
