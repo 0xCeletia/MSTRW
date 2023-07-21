@@ -1,4 +1,5 @@
 import { Container, Header, Navbar } from "components";
+import { AddressComponent } from "components";
 import { Paths } from "consts/paths";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
@@ -60,9 +61,12 @@ const Profile: NextPage = () => {
                 <Navbar />
                 <Container className="basis-1/2 bg-slate-300">
                     <Container className="mt-20">
-                        <h1 className={style.title}>heyhey</h1>
+                        <h1 className={style.title}>
+                            {/* with this address && check i managed to ensure that the 
+                        AddressComponent is only rendered when address is defined */}
+                            {address && <AddressComponent address={address} />}
+                        </h1>
                         <hr></hr>
-                        <h1>{`${address}`}</h1>
                     </Container>
                 </Container>
             </div>
