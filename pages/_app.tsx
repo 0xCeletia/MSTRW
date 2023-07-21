@@ -1,10 +1,12 @@
 import { useReducer } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
+import merge from "lodash.merge";
 import {
     darkTheme,
     getDefaultWallets,
     lightTheme,
     RainbowKitProvider,
+    Theme,
 } from "@rainbow-me/rainbowkit";
 
 import type { AppProps } from "next/app";
@@ -30,6 +32,7 @@ import { Paths } from "consts/paths";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { Header } from "components";
+import { ThirdwebProvider } from "@thirdweb-dev/react";
 
 export const queryClient = new QueryClient();
 
@@ -52,24 +55,30 @@ const wagmiClient = createClient({
 
 function masterwaveApp({ Component, pageProps }: AppProps) {
     const [_theme, _setTheme] = useState<ThemeOption>("dark");
+    const activeChain = "goerli";
+    const myTheme = merge(lightTheme(), {
+        colors: {
+            accentColor: "#2563eb",
+        },
+    } as Theme);
 
     return (
         <QueryClientProvider client={queryClient}>
             <ClientOnly>
                 <RecoilRoot>
                     <WagmiConfig client={wagmiClient}>
+                        {/* <ThirdwebProvider activeChain={activeChain}> */}
                         <RainbowKitProvider
                             showRecentTransactions
                             chains={chains}
                             initialChain={5}
-                            theme={
-                                _theme === "dark" ? darkTheme() : lightTheme()
-                            }
+                            theme={myTheme}
                         >
                             <InitHooks setTheme={_setTheme} />
                             <Component {...pageProps} />
                             <ToastContainer draggable theme={_theme} />
                         </RainbowKitProvider>
+                        {/* </ThirdwebProvider> */}
                     </WagmiConfig>
                 </RecoilRoot>
             </ClientOnly>
