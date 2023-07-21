@@ -1,11 +1,15 @@
 import React from "react";
 
 interface AddressComponentProps {
-    address: string;
+    // address: string;
+    address: string | undefined;
 }
 
 const AddressComponent: React.FC<AddressComponentProps> = ({ address }) => {
-    const shortenAddress = (address: string, digits = 4): string => {
+    const shortenAddress = (
+        address: string | undefined,
+        digits = 4
+    ): string => {
         if (!address) return "";
         return `${address.substring(0, digits + 2)}...${address.substring(
             address.length - digits
