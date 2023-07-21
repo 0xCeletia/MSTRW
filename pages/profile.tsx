@@ -98,19 +98,19 @@ const Profile: NextPage = () => {
                                 )}
                             </h1>
                         </Container>
-                        <div className="">
-                            <Tabs isFitted size="lg" className="">
+                        <div className="mt-10">
+                            <Tabs isFitted size="lg" className="text-center">
                                 <TabList
                                     width="96px"
                                     height="96px"
-                                    className="ml-[420px] space-x-10"
+                                    className="ml-[352px] space-x-14"
                                 >
                                     <Tab
                                         _selected={{
                                             color: "white",
                                             bg: "blue.500",
                                         }}
-                                        className=""
+                                        className="text-2xl"
                                     >
                                         Dashboard
                                     </Tab>
@@ -119,12 +119,13 @@ const Profile: NextPage = () => {
                                             color: "white",
                                             bg: "blue.500",
                                         }}
-                                        className="mr-2"
+                                        className="mr-2
+                                        text-2xl"
                                     >
                                         Catalog
                                     </Tab>
                                     <Tab
-                                        className="mr-2"
+                                        className="mr-2 text-2xl"
                                         _selected={{
                                             color: "white",
                                             bg: "blue.500",
@@ -133,8 +134,9 @@ const Profile: NextPage = () => {
                                         Allowlist
                                     </Tab>
                                 </TabList>
+                                <hr className=""></hr>
 
-                                <TabPanels>
+                                <TabPanels className="mt-8">
                                     <TabPanel>
                                         <p>one!</p>
                                     </TabPanel>
@@ -147,7 +149,7 @@ const Profile: NextPage = () => {
                                 </TabPanels>
                             </Tabs>
                         </div>
-                        <hr className="mt-20"></hr>
+                        {/* <hr className="mt-20"></hr> */}
                     </Container>
                 </div>
             )}
