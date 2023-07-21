@@ -55,6 +55,7 @@ const Profile: NextPage = () => {
     const account = getAccount();
 
     const address = account.address;
+    const addressCapitalized = address?.toUpperCase();
 
     return (
         <>
@@ -83,13 +84,16 @@ const Profile: NextPage = () => {
                 <div className="overlay">
                     <Header title={`Music Catalog`} />
                     <Navbar />
-                    <Container className="basis-1/2 bg-slate-300">
+
+                    <Container className=" bg-slate-300">
                         <Container className="mt-20">
-                            <h1 className={style.title}>
+                            <h1 className="text-7xl font-bold mb-4 text-stone-900">
                                 {/* with this address && check i managed to ensure that the 
                         AddressComponent is only rendered when address is defined */}
                                 {address && (
-                                    <AddressComponent address={address} />
+                                    <AddressComponent
+                                        address={addressCapitalized}
+                                    />
                                 )}
                             </h1>
                             <hr></hr>
