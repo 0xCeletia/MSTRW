@@ -16,6 +16,16 @@ import {
     BsFillMenuAppFill,
 } from "react-icons/bs";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { GiCaptainHatProfile } from "react-icons/gi";
+import { RiProfileFill } from "react-icons/ri";
+import {
+    RiAccountBoxFill,
+    RiAccountPinCircleLine,
+    RiSkull2Fill,
+    RiUser2Line,
+    RiUser4Line,
+} from "react-icons/ri";
+import { ConnectWallet } from "@thirdweb-dev/react";
 {
     /* olum sadece @rainbow-me/rainbowkit/package.json'daki export kısmı import ediliyormuş */
 }
@@ -50,7 +60,7 @@ export const Navbar = () => {
                         items-center logonun oranını koruyor
 
                     */}
-                    <div className="w-[150px] flex items-center">
+                    <div className="w-[165px] flex items-center">
                         <Image
                             onClick={() => router.push("/")}
                             alt="Logo"
@@ -88,13 +98,17 @@ export const Navbar = () => {
                         >
                             feeds
                         </Button>
+                        {/* 
+                        w-[32px] h-[32px]  : şunlarla ikonu büyütebildim
+                        */}
                         <Button
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsColumnsGap />}
+                            // leftIcon={<GiCaptainHatProfile className="" />}
                             onClick={() => router.push(Paths.PROFILE)}
                             color="openblue"
                         />
-                        profile
+
                         <Button
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsCode />}
@@ -112,11 +126,13 @@ export const Navbar = () => {
                             md:pl-4 : soldaki boşluğu belirliyor, :pr sağı
                             md:flex i kaldırınca yazı gitti span'de ama hidden ı da kaldırınca geldi
                         */}
-                        <ConnectButton
-                            accountStatus="avatar"
-                            chainStatus="icon"
-                            showBalance={false}
-                        />
+                        <section className="m-1 mr-2">
+                            <ConnectButton
+                                accountStatus="avatar"
+                                chainStatus="icon"
+                                showBalance={false}
+                            />
+                        </section>
                         {/* get started butonunu devre dışı bıraktım */}
                         {/* <Button
                             onClick={() => ConnectButton}
@@ -131,9 +147,11 @@ export const Navbar = () => {
                         */}
 
                         <Button
-                            className="w-[48px]"
-                            leftIcon={<BsSunFill />}
-                            onClick={toggleTheme}
+                            className="w-[52px]"
+                            // leftIcon={<BsSunFill />}
+                            leftIcon={<RiUser4Line />}
+                            onClick={() => router.push(Paths.PROFILE)}
+                            // onClick={toggleTheme}
                             color="openblue"
                         />
                     </div>
