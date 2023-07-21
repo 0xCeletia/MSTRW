@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/alert";
 import { CgProfile } from "react-icons/cg";
 import { getAccount } from "@wagmi/core";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 const style = {
     bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
@@ -81,11 +82,11 @@ const Profile: NextPage = () => {
             )}
 
             {isConnected && (
-                <div className="overlay">
+                <div className="overlay ">
                     <Header title={`Music Catalog`} />
                     <Navbar />
 
-                    <Container className=" bg-slate-300">
+                    <Container className="bg">
                         <Container className="mt-20">
                             <h1 className="text-7xl font-bold mb-4 text-stone-900">
                                 {/* with this address && check i managed to ensure that the 
@@ -96,8 +97,57 @@ const Profile: NextPage = () => {
                                     />
                                 )}
                             </h1>
-                            <hr></hr>
                         </Container>
+                        <div className="">
+                            <Tabs isFitted size="lg" className="">
+                                <TabList
+                                    width="96px"
+                                    height="96px"
+                                    className="ml-[420px] space-x-10"
+                                >
+                                    <Tab
+                                        _selected={{
+                                            color: "white",
+                                            bg: "blue.500",
+                                        }}
+                                        className=""
+                                    >
+                                        Dashboard
+                                    </Tab>
+                                    <Tab
+                                        _selected={{
+                                            color: "white",
+                                            bg: "blue.500",
+                                        }}
+                                        className="mr-2"
+                                    >
+                                        Catalog
+                                    </Tab>
+                                    <Tab
+                                        className="mr-2"
+                                        _selected={{
+                                            color: "white",
+                                            bg: "blue.500",
+                                        }}
+                                    >
+                                        Allowlist
+                                    </Tab>
+                                </TabList>
+
+                                <TabPanels>
+                                    <TabPanel>
+                                        <p>one!</p>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <p>two!</p>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <p>three!</p>
+                                    </TabPanel>
+                                </TabPanels>
+                            </Tabs>
+                        </div>
+                        <hr className="mt-20"></hr>
                     </Container>
                 </div>
             )}
