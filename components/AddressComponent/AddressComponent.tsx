@@ -3,6 +3,7 @@ import React from "react";
 interface AddressComponentProps {
     // address: string;
     address: string | undefined;
+    className?: string;
 }
 
 const AddressComponent: React.FC<AddressComponentProps> = ({ address }) => {
