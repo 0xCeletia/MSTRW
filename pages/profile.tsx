@@ -72,7 +72,27 @@ const Profile: NextPage = () => {
 
     const addressCapitalized = address?.toUpperCase();
 
-    const [totalNfts, setTotalNfts] = useState(0);
+    const [wholeNfts, setWholeNfts] = useState(0);
+
+    const { config: configE } = usePrepareContractWrite({
+        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
+        abi: contractInterfaceII,
+        functionName: "totalSupply",
+        args: ["0"],
+    });
+
+    const { data: balanceOfWhole } = useContractRead({
+        ...configE,
+        functionName: "totalSupply",
+        watch: true,
+        args: ["0"],
+    });
+
+    useEffect(() => {
+        if (balanceOfWhole) {
+            setWholeNfts(Number(balanceOfWhole));
+        }
+    }, [balanceOfWhole]);
 
     const { config: configD } = usePrepareContractWrite({
         address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
@@ -81,20 +101,7 @@ const Profile: NextPage = () => {
         args: [address, "0"],
     });
 
-    const { data: balanceOfData, isIdle } = useContractRead({
-        ...configD,
-        functionName: "balanceOf",
-        watch: true,
-        args: [address, "0"],
-    });
-
-    useEffect(() => {
-        if (balanceOfData) {
-            setTotalNfts(Number(balanceOfData));
-        }
-    }, [balanceOfData]);
-
-    const { data: OfData } = useContractRead({
+    const { data: OfData, isIdle } = useContractRead({
         ...configD,
         functionName: "balanceOf",
         watch: true,
@@ -194,7 +201,7 @@ const Profile: NextPage = () => {
                                                         total NFTs
                                                     </div>
                                                     <h3 className="text-4xl text-gray-100 md:text-3xl lg:text-[56px] ">
-                                                        {totalNft}
+                                                        {totalNft}{" "}
                                                     </h3>
                                                 </div>
                                                 <div className="mb-8 last:mb-0 sm:mb-0 ">
@@ -253,7 +260,7 @@ const Profile: NextPage = () => {
                                                         </tr>
                                                     </table> */}
 
-                                                    {isIdle && (
+                                                    {totalNft == 0 && (
                                                         <p className="text-gray-400 mt-4">
                                                             Your wallet is
                                                             empty. If you minted
@@ -261,12 +268,17 @@ const Profile: NextPage = () => {
                                                             while.
                                                         </p>
                                                     )}
-                                                    {!isIdle && (
+                                                    {totalNft > 0 && (
                                                         <p className="text-gray-400 mt-4">
-                                                            Your wallet is
-                                                            empty. If you minted
-                                                            recently wait a
-                                                            while.
+                                                            click to see on
+                                                            <a
+                                                                href={`https://testnets.opensea.io/assets/goerli/${configD.address}/0`}
+                                                            >
+                                                                {" "}
+                                                                <span className="underline">
+                                                                    Opensea
+                                                                </span>
+                                                            </a>
                                                         </p>
                                                     )}
                                                 </div>
