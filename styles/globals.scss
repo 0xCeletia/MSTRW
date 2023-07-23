@@ -29,10 +29,7 @@ body {
     height: 100%;
     left: 0;
     top: 0;
-    // background: rgba(0, 0, 0, 0.926);
-    // background: #3e6ab0;
     background:rgb(93, 120, 153);
-    // rgb(238, 218, 218);
     z-index: 0;
 }
 
@@ -63,6 +60,14 @@ button[data-mint-started="true"] {
   background-image: linear-gradient(130deg, #f78f9b, #28bbfa);
   position: relative;
 }
+
+button[data-mint-failed="true"] {
+  background: rgba(0, 81, 243, 0.24);
+  opacity: 110;
+
+}
+
+
 
 button[data-mint-started="true"]::after {
   animation-name: pulse;
