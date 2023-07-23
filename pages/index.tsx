@@ -145,6 +145,8 @@ const Home: NextPage = () => {
         }
     }, [balanceOfWhole]);
 
+    const [myVariable, setMyVariable] = useState("6");
+
     https: return (
         <>
             <Header />
@@ -231,7 +233,7 @@ const Home: NextPage = () => {
                                 active listing |
                             </h4>
                             <p className="text-[28px]">
-                                100 of {wholeNfts} minted
+                                100 of {myVariable} minted
                             </p>
 
                             <h4 className=" -translate-y-5 mr-5 font-[500] text-right text-[16px] md:text-[16px] mt-[20px] md:mt-[24px] text-emerald-700 max-w-[800px] md:leading-[40px] rubik dark:text-white">
@@ -278,7 +280,10 @@ const Home: NextPage = () => {
                             {/* sen azcık dur burda */}
                             {mounted && isConnected && !isClaimed && (
                                 <Button
-                                    onClick={() => claim?.()}
+                                    onClick={() => {
+                                        claim?.();
+                                        setMyVariable(String(wholeNfts));
+                                    }}
                                     leftIcon={<AiOutlineWallet />}
                                     color="openblue"
                                     className="button w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
