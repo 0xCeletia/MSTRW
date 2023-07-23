@@ -74,18 +74,18 @@ const Profile: NextPage = () => {
 
     const [totalNfts, setTotalNfts] = useState(0);
 
-    const { config } = usePrepareContractWrite({
-        address: "0x3985203e846455Dd60f65cD60864F4bE6A3A7DF7",
-        abi: contractInterface,
+    const { config: configD } = usePrepareContractWrite({
+        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
+        abi: contractInterfaceII,
         functionName: "balanceOf",
-        args: [address, "1"],
+        args: [address, "0"],
     });
 
     const { data: balanceOfData, isIdle } = useContractRead({
-        ...config,
+        ...configD,
         functionName: "balanceOf",
         watch: true,
-        args: [address, "1"],
+        args: [address, "0"],
     });
 
     useEffect(() => {
@@ -93,17 +93,6 @@ const Profile: NextPage = () => {
             setTotalNfts(Number(balanceOfData));
         }
     }, [balanceOfData]);
-
-    {
-        /* deniyorum */
-    }
-
-    const { config: configD } = usePrepareContractWrite({
-        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
-        abi: contractInterfaceII,
-        functionName: "balanceOf",
-        args: [address, "1"],
-    });
 
     const { data: OfData } = useContractRead({
         ...configD,
