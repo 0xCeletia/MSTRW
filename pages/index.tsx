@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 import {
     useAccount,
     usePrepareContractWrite,
@@ -88,29 +90,6 @@ const Home: NextPage = () => {
     });
 
     const isClaimed = txSuccessD;
-    {
-        /* supply */
-    }
-    const { config: configF } = usePrepareContractWrite({
-        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
-        abi: contractInterfaceII,
-        functionName: "balanceOf",
-        args: [address, "1"],
-    });
-
-    const { data: OfData } = useContractRead({
-        ...configF,
-        functionName: "balanceOf",
-        watch: true,
-        args: [address, "0"],
-    });
-    useEffect(() => {
-        if (OfData) {
-            setTotalNft(Number(OfData));
-        }
-    }, [OfData]);
-
-    const [totalNft, setTotalNft] = useState(0);
 
     {
         /* 
@@ -139,8 +118,6 @@ const Home: NextPage = () => {
             setWholeNfts(Number(balanceOfWhole));
         }
     }, [balanceOfWhole]);
-
-    const [myVariable, setMyVariable] = useState("6");
 
     const { openConnectModal } = useConnectModal();
 
@@ -229,10 +206,15 @@ const Home: NextPage = () => {
                             <h4 className=" -translate-y-5 ml-5 md:text-[16px] mt-[20px] font-[500] md:mt-[24px] max-w-[800px] md:leading-[40px] rubik text-emerald-700 dark:text-white">
                                 active listing |
                             </h4>
-                            <p className="text-[28px]">
-                                100 of {myVariable} minted
-                            </p>
+                            {isConnected && (
+                                <p className="text-[28px]">
+                                    100 of {wholeNfts} minted
+                                </p>
+                            )}
 
+                            {!isConnected && (
+                                <p className="text-[28px]">total 100 mints</p>
+                            )}
                             <h4 className=" -translate-y-5 mr-5 font-[500] text-right text-[16px] md:text-[16px] mt-[20px] md:mt-[24px] text-emerald-700 max-w-[800px] md:leading-[40px] rubik dark:text-white">
                                 | minting phase
                             </h4>
@@ -280,7 +262,6 @@ const Home: NextPage = () => {
                                 <Button
                                     onClick={() => {
                                         claim?.();
-                                        setMyVariable(String(wholeNfts));
                                     }}
                                     leftIcon={<AiOutlineWallet />}
                                     color="openblue"
@@ -293,7 +274,7 @@ const Home: NextPage = () => {
                                     {isClaimStarted && "Minting..."}
                                     {!isClaimLoading &&
                                         !isClaimStarted &&
-                                        "Mint"}
+                                        "Mint for 0.004 ETH"}
                                 </Button>
                             )}
 
