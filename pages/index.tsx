@@ -117,6 +117,34 @@ const Home: NextPage = () => {
 
     const [totalNft, setTotalNft] = useState(0);
 
+    {
+        /* 
+    supply of all minted
+*/
+    }
+
+    const [wholeNfts, setWholeNfts] = useState(0);
+
+    const { config: configE } = usePrepareContractWrite({
+        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
+        abi: contractInterfaceII,
+        functionName: "totalSupply",
+        args: ["0"],
+    });
+
+    const { data: balanceOfWhole } = useContractRead({
+        ...configE,
+        functionName: "totalSupply",
+        watch: true,
+        args: ["0"],
+    });
+
+    useEffect(() => {
+        if (balanceOfWhole) {
+            setWholeNfts(Number(balanceOfWhole));
+        }
+    }, [balanceOfWhole]);
+
     https: return (
         <>
             <Header />
@@ -203,7 +231,7 @@ const Home: NextPage = () => {
                                 active listing |
                             </h4>
                             <p className="text-[28px]">
-                                100 of {totalNft} minted
+                                100 of {wholeNfts} minted
                             </p>
 
                             <h4 className=" -translate-y-5 mr-5 font-[500] text-right text-[16px] md:text-[16px] mt-[20px] md:mt-[24px] text-emerald-700 max-w-[800px] md:leading-[40px] rubik dark:text-white">
