@@ -39,6 +39,7 @@ import { RiWallet3Line, RiToolsLine } from "react-icons/ri";
 import { IoDiamondOutline } from "react-icons/io5";
 import contractInterface from "../contract-abi.json";
 import contractInterfaceII from "../contract-abi-2.json";
+import { parseEther } from "ethers/lib/utils.js";
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -57,6 +58,29 @@ const Home: NextPage = () => {
 
     const address = account.address;
 
+    // const { config: configD } = usePrepareContractWrite({
+    //     address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
+    //     abi: contractInterfaceII,
+    //     functionName: "claim",
+    //     args: [
+    //         address,
+    //         "0",
+    //         "1",
+    //         "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+    //         "9000000000000000",
+    //         {
+    //             proof: [
+    //                 "0x0000000000000000000000000000000000000000000000000000000000000000",
+    //             ],
+    //             quantityLimitPerWallet:
+    //                 "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+    //             pricePerToken: "9000000000000000",
+    //             currency: "	0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+    //         },
+    //         "0x",
+    //     ],
+    // });
+
     const { config: configD } = usePrepareContractWrite({
         address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
         abi: contractInterfaceII,
@@ -66,15 +90,16 @@ const Home: NextPage = () => {
             "0",
             "1",
             "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
-            "0",
+            "900000000000000",
             {
                 proof: [],
                 quantityLimitPerWallet:
                     "115792089237316195423570985008687907853269984665640564039457584007913129639935",
-                pricePerToken: "0",
-                currency: "0x0000000000000000000000000000000000000000",
+                pricePerToken: "900000000000000",
+                currency: "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
             },
             "0x",
+            { value: "900000000000000", from: address },
         ],
     });
 
@@ -85,7 +110,7 @@ const Home: NextPage = () => {
         isSuccess: isClaimStarted,
     } = useContractWrite(configD);
 
-    const { isSuccess: txSuccessD } = useWaitForTransaction({
+    const { isSuccess: txSuccessD, isError } = useWaitForTransaction({
         hash: claimData?.hash,
     });
 
@@ -266,15 +291,25 @@ const Home: NextPage = () => {
                                     leftIcon={<AiOutlineWallet />}
                                     color="openblue"
                                     className="button w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
-                                    disabled={isClaimLoading || isClaimStarted}
-                                    data-mint-loading={isClaimLoading}
-                                    data-mint-started={isClaimStarted}
+                                    disabled={
+                                        isClaimLoading ||
+                                        isClaimStarted ||
+                                        isError
+                                    }
+                                    data-mint-loading={
+                                        isClaimLoading && isError!
+                                    }
+                                    data-mint-started={
+                                        isClaimStarted && !isError
+                                    }
+                                    data-mint-failed={isError}
                                 >
                                     {isClaimLoading && "Waiting for approval"}
-                                    {isClaimStarted && "Minting..."}
+                                    {isError && "Failed"}
+                                    {isClaimStarted && !isError && "Minting..."}
                                     {!isClaimLoading &&
                                         !isClaimStarted &&
-                                        "Mint for 0.004 ETH"}
+                                        "Mint for 0.009 ETH"}
                                 </Button>
                             )}
 
