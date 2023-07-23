@@ -224,41 +224,16 @@ const Profile: NextPage = () => {
                                         <TabPanel>
                                             <div className="ab-container mt-5 pb-12 lg:mt-28 ">
                                                 <div className="mb-24 pb-24">
-                                                    <h2 className="ab-section-subtitle uppercase text-3xl font-[700] text-gray-900 mb-8">
-                                                        my drops
-                                                    </h2>
-                                                    {/* <table className="w-full border-collapse text-sm">
-                                                        <tr>
-                                                            <th className="ab-text-opacity text-slate-800 border-gray-700 px-6 py-4 text-start">
-                                                                song
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 hidden border-gray-700 px-6 py-4 text-start sm:table-cell">
-                                                                royalties
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 hidden border-gray-700 px-6 py-4 text-start sm:table-cell">
-                                                                streams
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 border-gray-700 px-6 py-4 text-start">
-                                                                listed
-                                                            </th>
-                                                        </tr>
-                                                    </table>
-                                                    <table className="w-full border-collapse text-sm">
-                                                        <tr>
-                                                            <th className="ab-text-opacity text-left text-slate-800 border-gray-700 px-4 py-4 ">
-                                                                stressed out
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 hidden border-gray-700 -translate-x-20 py-4 px-8 text-start sm:table-cell">
-                                                                %0.0078
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 hidden border-gray-700 -translate-x-16 px-6 py-4 text-left sm:table-cell">
-                                                                10.0k/m
-                                                            </th>
-                                                            <th className="ab-text-opacity text-slate-800 border-gray-700 px-6 py-4 text-start">
-                                                                opensea
-                                                            </th>
-                                                        </tr>
-                                                    </table> */}
+                                                    <div className="flex flex-col-2 ">
+                                                        <h2 className="ab-section-subtitle uppercase text-3xl font-[700] text-gray-900 mb-8 mr-40">
+                                                            my drops
+                                                        </h2>
+                                                        {totalNft > 0 && (
+                                                            <h2 className="ml-8">
+                                                                heyyo
+                                                            </h2>
+                                                        )}
+                                                    </div>
 
                                                     {totalNft == 0 && (
                                                         <p className="text-gray-400 mt-4">
@@ -269,17 +244,19 @@ const Profile: NextPage = () => {
                                                         </p>
                                                     )}
                                                     {totalNft > 0 && (
-                                                        <p className="text-gray-400 mt-4">
-                                                            click to see on
-                                                            <a
-                                                                href={`https://testnets.opensea.io/assets/goerli/${configD.address}/0`}
-                                                            >
-                                                                {" "}
-                                                                <span className="underline">
-                                                                    Opensea
-                                                                </span>
-                                                            </a>
-                                                        </p>
+                                                        <div>
+                                                            <p className="text-gray-400 mt-4">
+                                                                click to see on
+                                                                <a
+                                                                    href={`https://testnets.opensea.io/assets/goerli/${configD.address}/0`}
+                                                                >
+                                                                    {" "}
+                                                                    <span className="underline">
+                                                                        Opensea
+                                                                    </span>
+                                                                </a>
+                                                            </p>
+                                                        </div>
                                                     )}
                                                 </div>
                                             </div>
