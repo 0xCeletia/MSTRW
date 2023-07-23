@@ -6,19 +6,14 @@ import {
     useWaitForTransaction,
 } from "wagmi";
 import { getAccount } from "@wagmi/core";
-import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { Container, Header, Navbar } from "components";
 import type { NextPage } from "next";
 import { AiOutlineWallet } from "react-icons/ai";
 import { Button } from "ui";
 import Screens from "assets/screens.png";
-import ac1 from "assets/ac1.png";
-import albumc from "assets/albumc.png";
-import bf from "assets/Blurryface Album Cover_ Inverted Circles.png";
 import Purple from "assets/purple.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Paths } from "consts/paths";
 import { useTheme } from "recoil/theme/ThemeStoreHooks";
 import { BsGithub, BsTwitter } from "react-icons/bs";
 import Flying from "assets/flying.png";
@@ -26,7 +21,7 @@ import Flying from "assets/flying.png";
 import { useEffect, useRef, useState } from "react";
 import LogoSm from "assets/logo/logo-small.png";
 import { SiDocsdotrs } from "react-icons/si";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ConnectButton, useConnectModal } from "@rainbow-me/rainbowkit";
 import { BsUnlock, BsUiChecks } from "react-icons/bs";
 
 import { SlCreditCard } from "react-icons/sl";
@@ -146,6 +141,8 @@ const Home: NextPage = () => {
     }, [balanceOfWhole]);
 
     const [myVariable, setMyVariable] = useState("6");
+
+    const { openConnectModal } = useConnectModal();
 
     https: return (
         <>
@@ -269,6 +266,7 @@ const Home: NextPage = () => {
                             {!isConnected && (
                                 <div>
                                     <Button
+                                        onClick={openConnectModal}
                                         color="bluee"
                                         className="button w-full -translate-x--8 hover:rounded-3xl hover:bg-blue-300 transition-all cursor-pointer duration-300 ease-linear -translate-y-6 mt-[24px] md:mt-[32px] h-16 pl-4 pr-4 text-[18px]"
                                     >
