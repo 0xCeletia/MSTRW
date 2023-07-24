@@ -40,6 +40,7 @@ import { IoDiamondOutline } from "react-icons/io5";
 import contractInterface from "../contract-abi.json";
 import contractInterfaceII from "../contract-abi-2.json";
 import { parseEther } from "ethers/lib/utils.js";
+import { Progress } from "flowbite-react";
 
 const Home: NextPage = () => {
     const router = useRouter();
@@ -150,6 +151,7 @@ const Home: NextPage = () => {
         <>
             <Header />
             <Navbar />
+
             <section className=" w-full overflow-hidden min-h-screen ">
                 {/* w-[100%] md:w-[85%] bunu silince düzeldi, soldaydı
                     md:mt-[24px] yukarıyla olan mesafe
@@ -258,10 +260,10 @@ const Home: NextPage = () => {
                             </span>{" "}
                         </h1>
                         <h1 className="text-[64px] md:text-[24px] md:mt-[-16px] font-[700] ml-10 text-green-600 dark:text-white mb-0 rubik leading-[40px] md:leading-[52px] w-[100%] md:w-[85%]">
-                            twenty one pilots
+                            Max Harmon
                         </h1>
                         <h1 className="mt-[60px] flex items-center text-[64px] md:text-[24px] md:mt-[-16px] font-[700] ml-10 text-MAIN_DARK dark:text-white mb-0 rubik leading-[40px] md:leading-[52px] w-[100%] md:w-[85%]">
-                            /blurryface
+                            /Timeless Tunes
                         </h1>
 
                         {/* bu div ile arkaya kutu ekledim */}
@@ -408,7 +410,7 @@ const Home: NextPage = () => {
                                         />
                                     </div>
                                     <p className="text-base font-mono font-semibold -translate-x-16 text-MAIN_DARK text-center text-[22px] max-w-[800px] md:leading-[40px] rubik">
-                                        $100.00
+                                        $170.00
                                     </p>
 
                                     <p className="text-base font-regular -translate-x-16 text-slate-400 text-center text-[16px] md:text-[20px] max-w-[800px]  rubik">
@@ -469,9 +471,9 @@ const Home: NextPage = () => {
                         About it
                     </h2>
                     <h4 className="text-center mt-[24px] text-[14px] md:text-[20px] font-[400] rubik text-neutral-700 dark:text-neutral-100 max-w-[512px] ml-auto mr-auto rubik">
-                        ***'s debut album, "" demonstrates both the group's
-                        exceptional vocal abilites and highlights their growth
-                        as producer and songwriters.
+                        Max Harmon's debut album, "Timeless Tunes" demonstrates
+                        both the group's exceptional vocal abilites and
+                        highlights their growth as producer and songwriters.
                     </h4>
                     {/* main features ın altındaki özellikler şeyini yapıyor, ortalıyor, yan yana diziyor  */}
                     <div className="grid grid-cols-1 md:grid-cols-2 mt-[32px] space-y-4 md:space-y-0 md:space-x-8">
@@ -492,7 +494,7 @@ const Home: NextPage = () => {
                                         Royalties
                                     </h4>
                                     <h3 className="text-center text-buttonopenblueBg font-bold text-[20px]">
-                                        0.0251%
+                                        0.008%
                                     </h3>
                                 </div>
                                 <div className="col bg-neutral-100 dark:bg-green rounded-lg px-4 py-4 shadow-md">
@@ -558,10 +560,8 @@ const Home: NextPage = () => {
                         </div>
                     </div>
                 </Container>
-                {/* bunlar napıyor anlamadım ama */}
                 <div className="sticky top-0">
                     <Container className="min-h-screen-overflow md:min-h-screen md:justify-center flex flex-col overflow-hidden">
-                        {/* tech stack ı havalı yapan bu */}
                         <h2 className="text-center mt-[60px] text-[24px] md:text-[48px] font-[600] rubik text-MAIN_DARK dark:text-white rubik">
                             mint phases
                         </h2>
@@ -577,51 +577,104 @@ const Home: NextPage = () => {
                         <div
                             className={`flex flex-wrap mt-[12px] justify-center`}
                         >
-                            <a>
-                                <div
+                            {/* <a> */}
+                            {/* <div
                                     // className=" rounded-full w-[64px] h-[64px] ml-12 flex justify-center items-center text-MAIN_DARK p-4 ">
                                     className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3"
                                 >
                                     <TbClockHour12 fontSize={48} color="blue" />
                                 </div>
-                                {/* <div className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3">
+                                <p>heyyo</p> */}
+                            {/* <div className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3">
                                     <h1>phase 1</h1>
                                 </div> */}
-                            </a>
+                            {/* </a> */}
                             <a>
                                 <div
                                     // className=" rounded-full w-[64px] h-[64px] ml-12 flex justify-center items-center text-MAIN_DARK p-4 ">
-                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3"
+                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-14"
                                 >
-                                    <TbClockHour3 fontSize={48} color="blue" />
+                                    <TbClockHour3
+                                        fontSize={48}
+                                        color="#15803d"
+                                    />
+                                </div>
+                                <div className="text-center ml-7 xl:text-lg md:mx-8">
+                                    <p className="h-5 mt-2 pr-2 font-[700] text-gray-400pr-2 xl:mb-3 text-base text-green-700">
+                                        allowlist
+                                    </p>
+                                    <div className="mb-3">
+                                        <p className="h-5 mt-2 text-grau line-through font-[400] text-gray-400 pr-2 xl:mb-3 text-base ">
+                                            you can't mint
+                                        </p>
+                                    </div>
+                                    <div className="mb-3">
+                                        <p className="h-5 pr-2 xl:mb-3 text-sm font-[400] text-green-900">
+                                            completed
+                                        </p>
+                                    </div>
                                 </div>
                             </a>
                             <a>
                                 <div
                                     // className=" rounded-full w-[64px] h-[64px] ml-12 flex justify-center items-center text-MAIN_DARK p-4 ">
-                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3"
+                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-14"
                                 >
-                                    <TbClockHour6 fontSize={48} color="blue" />
+                                    <TbClockHour6
+                                        fontSize={48}
+                                        color="#0e7490"
+                                    />
+                                </div>
+                                <div className="text-center ml-7 xl:text-lg md:mx-8">
+                                    <p className="h-5 mt-2 pr-2 font-[700] xl:mb-3 text-base text-cyan-700">
+                                        nft holder
+                                    </p>
+                                    <div className="mb-3">
+                                        <p className="h-5 mt-2 text-grau line-through font-[400] text-gray-400 pr-2 xl:mb-3 text-base ">
+                                            you can't mint
+                                        </p>
+                                    </div>
+                                    <div className="mb-3">
+                                        <p className="h-5 pr-2 xl:mb-3 text-sm font-[400] text-green-900">
+                                            completed
+                                        </p>
+                                    </div>
                                 </div>
                             </a>
                             <a>
-                                <div
-                                    // className=" rounded-full w-[64px] h-[64px] ml-12 flex justify-center items-center text-MAIN_DARK p-4 ">
-                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3"
-                                >
-                                    <TbClockHour9 fontSize={48} color="blue" />
+                                <div className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-14">
+                                    <TbClockHour9
+                                        fontSize={48}
+                                        color="#b91c1c"
+                                    />
                                 </div>
-                            </a>
-                            <a>
-                                <div
-                                    // className=" rounded-full w-[64px] h-[64px] ml-12 flex justify-center items-center text-MAIN_DARK p-4 ">
-                                    className="col flex bg-white dark:bg-DARK_PURPLE p-4 lg:p-8 rounded-xl shadow-lg h-[64px] w-[64px] md:w-[112px] md:h-[112px] hover:-translate-y-2 duration-150 mt-4 md:mt-8 mx-2 md:mx-3"
-                                >
-                                    <TbClockHour12 fontSize={48} color="blue" />
+                                <div className="text-center ml-7 xl:text-lg md:mx-8">
+                                    <p className="h-5 mt-2 pr-2 font-[700] xl:mb-3 text-base text-red-700">
+                                        public mint
+                                    </p>
+                                    <div className="mb-3">
+                                        <p className="h-5 mt-2 text-grau font-[400] text-gray-400 pr-2 xl:mb-3 text-base ">
+                                            you can mint
+                                        </p>
+                                    </div>
+                                    <div className="mb-3">
+                                        <p className="h-5 pr-2 xl:mb-3 text-sm font-[400] text-green-900">
+                                            completed
+                                        </p>
+                                    </div>
                                 </div>
                             </a>
                         </div>
-                        {/* uçan kayan kız ama sadece kız hareket etme filan yok burda onlar aşada*/}
+                        {/* */}
+                        <div className="mt-8"></div>
+                        <div className="w-[572px] ml-[305px] bg-gray-200 rounded-full dark:bg-gray-700">
+                            <div className="bg-blue-600 text-xl font-medium w-12/12 text-blue-400 text-center p-0.5 leading-none rounded-full">
+                                {"  "}
+                            </div>
+                        </div>
+                        {/* */}
+
+                        <hr className="mt-2"></hr>
                         <div className="lg:px-[80px]">
                             <Image
                                 ref={imageRef}
@@ -632,11 +685,13 @@ const Home: NextPage = () => {
                         </div>
                     </Container>
                 </div>
-                {/* bura da kızı kaydırıyor */}
-                {/* <div className="h-screen"></div>
-                <div className="h-screen-half hidden md:flex"></div> */}
+                {/* h-screen sayfayı uzatıyor haberin ola */}
+                {/* <div className="h-screen"></div> */}
+
+                {/* <div className="h-screen-half hidden md:flex"></div> */}
                 {/* burası ekranı altta kaydıran şey */}
             </section>
+
             <div className="border-t-1 border-neutral-200 dark:border-DARK_PURPLE py-6 mt-[108px]">
                 <Container className="flex flex-col md:flex-row justify-center items-center">
                     <div className="flex justify-center items-center md:mr-auto">
