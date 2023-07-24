@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 import {
     useAccount,
     usePrepareContractWrite,
@@ -28,6 +30,7 @@ import { SiDocsdotrs } from "react-icons/si";
 import contractInterface from "../contract-abi.json";
 import contractInterfaceII from "../contract-abi-2.json";
 import { useEffect, useRef, useState } from "react";
+import aggregatorInterface from "../aggregatorV3InterfaceABI.json";
 
 const style = {
     bannerImageContainer: `h-[20vh] w-screen overflow-hidden flex justify-center items-center`,
@@ -114,6 +117,72 @@ const Profile: NextPage = () => {
     }, [OfData]);
 
     const [totalNft, setTotalNft] = useState(0);
+
+    {
+        /* deniyorum */
+    }
+    const [price, setPrice] = useState(0);
+
+    const { config: configP } = usePrepareContractWrite({
+        address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
+        abi: contractInterfaceII,
+        functionName: "getClaimConditionById",
+        args: ["0", "1"],
+    });
+
+    const { data: priceAll } = useContractRead({
+        ...configP,
+        functionName: "getClaimConditionById",
+        watch: true,
+        args: ["0", "1"],
+    });
+
+    /* In this case, the as any[] part is telling TypeScript "trust me,
+     priceAll is an array". Note that this is potentially unsafe - if 
+     priceAll is not an array, this code could cause a runtime error.
+    */
+    const myPrice = (priceAll as any[])[5];
+    const _myPrice = Number(myPrice);
+    const __myPrice = Number(ethers.utils.formatEther(myPrice));
+    const totalPrice = __myPrice * totalNft;
+
+    useEffect(() => {
+        if (_myPrice) {
+            setPrice(Number(_myPrice));
+        }
+    }, [_myPrice]);
+
+    {
+        /* deniyorum */
+    }
+
+    {
+        /* fetching the USD / ETH price */
+    }
+
+    const [convert, setConvert] = useState(0);
+
+    const { config: configU } = usePrepareContractWrite({
+        address: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419",
+        abi: aggregatorInterface,
+        functionName: "latestRound",
+        args: [],
+    });
+
+    const { data: conversion } = useContractRead({
+        ...configU,
+        functionName: "latestRound",
+        watch: true,
+        args: [],
+    });
+
+    const _conversion = Number(conversion);
+
+    useEffect(() => {
+        if (_conversion) {
+            setPrice(Number(_conversion));
+        }
+    }, [_conversion]);
 
     return (
         <>
@@ -206,13 +275,17 @@ const Profile: NextPage = () => {
                                                 </div>
                                                 <div className="mb-8 last:mb-0 sm:mb-0 ">
                                                     <div className="text-3xl font-[700] text-gray-900 mb-8 flex items-center justify-start">
-                                                        catalog value{" "}
+                                                        catalog value
                                                     </div>
                                                     <h3 className="text-4xl  text-gray-100 md:text-3xl lg:text-[56px]">
-                                                        0 eth
+                                                        {totalPrice} eth
                                                     </h3>
                                                     <p className="mt-4 text-lg text-gray-400 sm:h-[30px] lg:-mt-15">
-                                                        ≈ 0 usd
+                                                        ≈{" "}
+                                                        {(
+                                                            totalPrice * 1849
+                                                        ).toFixed(2)}{" "}
+                                                        usd
                                                     </p>
                                                     <p className=" text-xs text-gray-600 sm:h-[30px] lg:-mt-15">
                                                         calculated based on
@@ -230,7 +303,7 @@ const Profile: NextPage = () => {
                                                         </h2>
                                                         {totalNft > 0 && (
                                                             <h2 className="ml-8">
-                                                                heyyo
+                                                                {/* heyyo */}
                                                             </h2>
                                                         )}
                                                     </div>
