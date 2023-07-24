@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/stepper": "^2.3.0",
     "@dicebear/avatars": "4.10.8",
     "@dicebear/avatars-human-sprites": "4.10.8",
     "@emoji-mart/data": "1.1.2",
@@ -42,6 +43,7 @@
     "decent-audio-player": "^1.0.6",
     "emoji-mart": "5.5.2",
     "ethers": "^5.7.2",
+    "flowbite-react": "^0.5.0",
     "ipfs-bitswap": "^18.0.1",
     "ipfs-core": "^0.18.1",
     "ipfs-repo-migrations": "^15.0.0",
