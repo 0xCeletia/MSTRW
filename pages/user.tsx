@@ -141,9 +141,14 @@ const Profile: NextPage = () => {
      priceAll is an array". Note that this is potentially unsafe - if 
      priceAll is not an array, this code could cause a runtime error.
     */
-    const myPrice = (priceAll as any[])[5];
+    let myPrice = [];
+    if (Number(address) != 0) {
+        myPrice = [];
+    } else {
+        myPrice = (priceAll as any[])[5];
+    }
     const _myPrice = Number(myPrice);
-    const __myPrice = Number(ethers.utils.formatEther(myPrice));
+    const __myPrice = Number(ethers.utils.formatEther(_myPrice));
     const totalPrice = __myPrice * totalNft;
 
     useEffect(() => {
