@@ -27,6 +27,7 @@ import {
 } from "react-icons/ri";
 import { ConnectWallet } from "@thirdweb-dev/react";
 import { getAccount } from "@wagmi/core";
+import { useAccount } from "wagmi";
 import { useState, useEffect } from "react";
 
 {
@@ -34,6 +35,8 @@ import { useState, useEffect } from "react";
 }
 
 export const Navbar = () => {
+    const { isConnected, isDisconnected } = useAccount();
+
     const router = useRouter();
     const theme = useTheme();
     const toggleTheme = useToggleTheme();
@@ -124,7 +127,12 @@ export const Navbar = () => {
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsColumnsGap />}
                             // leftIcon={<GiCaptainHatProfile className="" />}
-                            onClick={() => router.push(`/user/${address}`)}
+                            // onClick={() => router.push(`/user/${address}`)}
+                            onClick={() =>
+                                isConnected
+                                    ? router.push(`/user/${address}`)
+                                    : router.push(`/user`)
+                            }
                             color="openblue"
                         />
 
