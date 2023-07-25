@@ -26,6 +26,9 @@ import {
     RiUser4Line,
 } from "react-icons/ri";
 import { ConnectWallet } from "@thirdweb-dev/react";
+import { getAccount } from "@wagmi/core";
+import { useState, useEffect } from "react";
+
 {
     /* olum sadece @rainbow-me/rainbowkit/package.json'daki export kısmı import ediliyormuş */
 }
@@ -34,6 +37,22 @@ export const Navbar = () => {
     const router = useRouter();
     const theme = useTheme();
     const toggleTheme = useToggleTheme();
+
+    // const address = getAccount();
+
+    const [address, setAddress] = useState(getAccount().address);
+    // Update address state if it changes
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const newAddress = getAccount().address;
+            if (address !== newAddress) {
+                setAddress(newAddress);
+            }
+        }, 1000); // Check every second
+
+        // Cleanup on unmount
+        return () => clearInterval(interval);
+    }, [address]);
 
     return (
         <div className="sticky top-0 h-[72px] flex items-center border-b-1 border-[#e7e7e7] dark:border-none bg-[#ffffffC0] dark:bg-[#bd97e910] z-10">
@@ -105,14 +124,14 @@ export const Navbar = () => {
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsColumnsGap />}
                             // leftIcon={<GiCaptainHatProfile className="" />}
-                            onClick={() => router.push(Paths.PROFILE)}
+                            onClick={() => router.push(`/user/${address}`)}
                             color="openblue"
                         />
 
                         <Button
                             className="w-[88px] hover:rounded-xl"
                             leftIcon={<BsCode />}
-                            // onClick={toggleTheme}
+                            // onClick={window.location.reload()}
                             color="openblue"
                             size="small"
                         />
@@ -150,7 +169,8 @@ export const Navbar = () => {
                             className="w-[52px]"
                             // leftIcon={<BsSunFill />}
                             leftIcon={<RiUser4Line />}
-                            onClick={() => router.push(Paths.PROFILE)}
+                            // onClick={() => router.push(Paths.USER)}
+                            onClick={() => router.push(Paths.USER)}
                             // onClick={toggleTheme}
                             color="openblue"
                         />
