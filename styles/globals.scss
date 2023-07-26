@@ -24,16 +24,11 @@ body {
   }
 
 .overlay{
-  position: fixed;
     width: 100%;
     height: 100%;
-    left: 0;
-    top: 0;
     background:rgb(93, 120, 153);
     z-index: 0;
 }
-
-// these are new
 
 
 .button {
