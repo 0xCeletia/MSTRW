@@ -18,7 +18,7 @@ export const TabsComponent = () => {
         args: [address, "0"],
     });
 
-    const { data: balanceData, isIdle } = useContractRead({
+    const { data: balanceData } = useContractRead({
         ...config,
         functionName: "balanceOf",
         watch: true,
@@ -31,7 +31,6 @@ export const TabsComponent = () => {
     }, [balanceData]);
 
     //priceData
-    const [price, setPrice] = useState(0);
 
     const { config: configP } = usePrepareContractWrite({
         address: "0xE22A757FB9F04d90c406D9ede9f5ED75190e4E97",
@@ -48,11 +47,7 @@ export const TabsComponent = () => {
     });
 
     let myPrice = [];
-    {
-        /* olum ciddi mi == 0 yerine !=0 yaptım ve çözüldü nasıl buluyum ben bunu 
-        çözmemişsin değer gidiyor o zaman 0 oluyor. sadece error vermiyor.
-        */
-    }
+
     if (Number(address) == 0) {
         myPrice = [];
     } else {
@@ -61,12 +56,6 @@ export const TabsComponent = () => {
     const _myPrice = Number(myPrice);
     const __myPrice = Number(ethers.utils.formatEther(_myPrice));
     const totalPrice = __myPrice * totalNft;
-
-    useEffect(() => {
-        if (_myPrice) {
-            setPrice(Number(_myPrice));
-        }
-    }, [_myPrice]);
 
     return (
         <>
