@@ -147,9 +147,11 @@ const Profile: NextPage = () => {
     */
     let myPrice = [];
     {
-        /* olum ciddi mi == 0 yerine !=0 yaptım ve çözüldü nasıl buluyum ben bunu */
+        /* olum ciddi mi == 0 yerine !=0 yaptım ve çözüldü nasıl buluyum ben bunu 
+        çözmemişsin değer gidiyor o zaman 0 oluyor. sadece error vermiyor.
+        */
     }
-    if (Number(addresss) != 0) {
+    if (Number(addresss) == 0) {
         myPrice = [];
     } else {
         myPrice = (priceAll as any[])[5];
