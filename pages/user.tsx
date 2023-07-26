@@ -44,7 +44,7 @@ const UserPage: NextPage = () => {
                         <TabsComponent />
                     </Container>
                 ) : (
-                    <div className="overlay body mb-10">
+                    <div className="overlay mb-10">
                         <Container className="mt-10">
                             <h1 className="text-4xl mt-52 font-bold mb-4 text-center">
                                 Connect to your wallet to get started!
