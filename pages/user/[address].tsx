@@ -14,19 +14,19 @@ const UserPage: NextPage = () => {
     const router = useRouter();
 
     useEffect(() => {
-        if (address && `/temizhaller/${address}` !== router.asPath) {
-            router.push(`/temizhaller/${address}`);
+        if (address && `/user/${address}` !== router.asPath) {
+            router.push(`/user/${address}`);
         }
     }, [address, router]);
 
     useEffect(() => {
-        if (!address && `/temizhaller/${address}` !== router.asPath) {
-            router.push(`/temizhaller/user`);
+        if (!address && `/user/${address}` !== router.asPath) {
+            router.push(`/user`);
         }
     }, [address, router]);
     useEffect(() => {
-        if (address && router.asPath == "/temizhaller") {
-            router.push(`/temizhaller/${address}`);
+        if (address && router.asPath == "/user") {
+            router.push(`/user/${address}`);
         }
     }, [address, router]);
 
