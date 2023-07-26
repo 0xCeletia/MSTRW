@@ -1,16 +1,3 @@
-bin yıllık dependency sorunun çözdüm burda.  : npm ve node’u güncelledim. belki thirdweb uyumsuzluğu bundandır
-
-
-npm install -g npm@latest : nvm install node
-
-aha npm installdaki sorunların hepi gitti. : ethers’in legacy versiyonunu indirdim, : npm i ethers@5.7.2 sonra package-lock.json’daki versiyonu değişti gördüm.
-
-wagmi hatasını wagminin 0.11.7 (kendi kullandığım versiyonu) nu indirerek ve package-lock’tan değiştirerek onu ve peerdependency’lerin versiyonlarını düzelttim.
-
-şimdi wagmiyi ^0.12.9 yaptım : npm install wagmi@0.12  :  ve hata yok index ve app’de. Rainbow’un uyuşmazlığı dışında : peerDeps’ten wagmiyi yükselttim 0.11.7’den ^0.12.9’a rainbowun peerdependency'lerindeki
-
-yani neymiş uydurcaksın versiyonları, büyük değişiklikler yapıyorlar adamlar direkt kodu geçersiz kılabiliyor versiyon değişiklikleri dikkat et
-
 This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](https://github.com/rainbow-me/rainbowkit/tree/main/packages/create-rainbowkit).
 
 ## Getting Started
