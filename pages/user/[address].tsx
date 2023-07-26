@@ -146,7 +146,10 @@ const Profile: NextPage = () => {
      priceAll is not an array, this code could cause a runtime error.
     */
     let myPrice = [];
-    if (Number(addresss) == 0) {
+    {
+        /* olum ciddi mi == 0 yerine !=0 yaptım ve çözüldü nasıl buluyum ben bunu */
+    }
+    if (Number(addresss) != 0) {
         myPrice = [];
     } else {
         myPrice = (priceAll as any[])[5];
@@ -212,25 +215,47 @@ const Profile: NextPage = () => {
         return () => clearInterval(interval);
     }, [address]);
 
-    // Navigate to new page when address changes
-    // useEffect(() => {
-    //     if (address) {
-    //         router.push(`/user/${address}`);
-    //     }
-    // }, [address, router]);
-
     {
         /*
          do not render again when im already in that page
-         OMG HER ŞEYİ BU YAPTI yukardakine ihtiyacım yokmuş ki
-         olum çok akıllıca 
          */
     }
+
     useEffect(() => {
         if (address && `/user/${address}` !== router.asPath) {
             router.push(`/user/${address}`);
         }
     }, [address, router]);
+
+    useEffect(() => {
+        if (!address && `/user/${address}` !== router.asPath) {
+            router.push(`/user`);
+        }
+    }, [address, router]);
+    useEffect(() => {
+        if (address && router.asPath == "/user") {
+            router.push(`/user/${address}`);
+        }
+    }, [address, router]);
+
+    {
+        /* */
+    }
+    // useEffect(() => {
+    //     if (address) {
+    //         // if there's an address (wallet is connected)
+    //         if (router.asPath !== `/user/${address}`) {
+    //             // if the current path is not the desired path, navigate to the desired path
+    //             router.push(`/user/${address}`);
+    //         }
+    //     } else {
+    //         // if there's no address (wallet is not connected)
+    //         if (router.asPath !== `/user`) {
+    //             // if the current path is not the desired path, navigate to the desired path
+    //             router.push(`/user`);
+    //         }
+    //     }
+    // }, [address, router]);
 
     return (
         <>
