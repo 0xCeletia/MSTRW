@@ -58,7 +58,7 @@ export const Navbar = () => {
     }, [address]);
 
     return (
-        <div className="sticky top-0 h-[72px] flex items-center border-b-1 border-[#e7e7e7] dark:border-none bg-[#ffffffC0] dark:bg-[#bd97e910] z-10">
+        <div className="z-50 sticky top-0 h-[72px] flex items-center border-b-1 border-[#e7e7e7] dark:border-none bg-[#ffffffC0] dark:bg-[#bd97e910] ">
             {/* üstteli div için bu:
                 sticky ve top-0 navbarın aşağı kaydırsan da durmasını sağlıyor
                 top-0 da üst ekrana olan mesafeyi belirliyor
@@ -178,8 +178,11 @@ export const Navbar = () => {
                             // leftIcon={<BsSunFill />}
                             leftIcon={<RiUser4Line />}
                             // onClick={() => router.push(Paths.USER)}
-                            onClick={() => router.push(Paths.USER)}
-                            // onClick={toggleTheme}
+                            onClick={() =>
+                                isConnected
+                                    ? router.push(`/user/${address}`)
+                                    : router.push(`/user`)
+                            }
                             color="openblue"
                         />
 
