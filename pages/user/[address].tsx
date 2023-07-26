@@ -353,7 +353,8 @@ const Profile: NextPage = () => {
                                                         catalog value
                                                     </div>
                                                     <h3 className="text-4xl  text-gray-100 md:text-3xl lg:text-[56px]">
-                                                        {totalPrice} eth
+                                                        {totalPrice.toFixed(4)}{" "}
+                                                        eth
                                                     </h3>
                                                     <p className="mt-4 text-lg text-gray-400 sm:h-[30px] lg:-mt-15">
                                                         ≈{" "}
