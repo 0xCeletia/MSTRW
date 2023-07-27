@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { useAccount } from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -19,11 +19,6 @@ const UserPage: NextPage = () => {
         }
     }, [address, router]);
 
-    // useEffect(() => {
-    //     if (!address && `/temizhaller/${address}` !== router.asPath) {
-    //         router.push(`/temizhaller`);
-    //     }
-    // }, [address, router]);
     useEffect(() => {
         if (address && router.asPath == "/user") {
             router.push(`/user/${address}`);
