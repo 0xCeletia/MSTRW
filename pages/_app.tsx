@@ -40,6 +40,7 @@ import {
     rainbowWallet,
     metaMaskWallet,
 } from "@rainbow-me/rainbowkit/wallets";
+import RPC from "../web3RPC";
 
 export const queryClient = new QueryClient();
 
@@ -88,8 +89,6 @@ const connectors = connectorsForWallets([
         ],
     },
 ]);
-
-// tüm wallet fonksiyonları bu connectorda bitiyor
 
 const wagmiClient = createClient({
     autoConnect: true,
